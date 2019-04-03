@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MathMain {
@@ -7,9 +8,18 @@ public class MathMain {
 
         List<Integer> data = Arrays.asList(5, -20, 121, 13, -87, 43);
 
+        getResult(data, new MaxOperation());
+
         getResult(data, new MinOperation());
 
-        getResult(data, new MaxOperation());
+
+//        Using LAMBDAs
+
+        MathOperation o = list -> Collections.max(list);
+        getResult(data, o);
+
+        getResult(data, lista -> Collections.min(lista));
+
     }
 
     public static void getResult(List<Integer> numbers,
