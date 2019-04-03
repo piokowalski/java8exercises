@@ -47,5 +47,11 @@ public class LambdaMain {
             System.out.print("["+s+"]");
         }
         System.out.println();
+
+      // wyswietlanie z duzymi literami lambdą
+        list.forEach(param -> System.out.println(param.toUpperCase()));
+
+        }
+
     }
-}
+
