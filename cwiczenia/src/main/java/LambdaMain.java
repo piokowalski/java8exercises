@@ -1,7 +1,7 @@
- import java.util.ArrayList;
-        import java.util.Arrays;
-        import java.util.List;
-        import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class LambdaMain {
 
@@ -48,10 +48,22 @@ public class LambdaMain {
         }
         System.out.println();
 
-      // wyswietlanie z duzymi literami lambdą
         list.forEach(param -> System.out.println(param.toUpperCase()));
 
-        }
-
+        getLengths(list).forEach(i -> System.out.println(i));
     }
 
+
+
+    public static List<Integer> getLengths(List<String> list) {
+        List<Integer> result = new ArrayList<>();
+
+        list.forEach(e -> result.add(e.length()));
+
+//        for (String e : list) {
+//            result.add(e.length());
+//        }
+
+        return result;
+    }
+}

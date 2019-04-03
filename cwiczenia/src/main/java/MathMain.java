@@ -1,8 +1,8 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class MathMain {
 
@@ -10,31 +10,36 @@ public class MathMain {
 
         List<Integer> data = Arrays.asList(5, -20, 121, 13, -87, 43);
 
-        getResult(data, new MaxOperation());
+//        getResult(data, new MinOperation());
+//
+//        getResult(data, new MaxOperation());
 
-        getResult(data, new MinOperation());
+//        MathOperation o = l -> Collections.max(l);
+//        getResult(data, o);
 
+        getResult(data, list -> Collections.max(list),
+                i -> System.out.println("Max to: " + i)); // impl
 
-//        Using LAMBDAs
+        getResult(data, superDane -> {
+                    Integer max = Integer.MIN_VALUE;
 
-        MathOperation o = list -> Collections.max(list);
-        getResult(data, o);
+                    for (Integer i : superDane) {
+                        if (i > max) {
+                            max = i;
+                        }
+                    }
 
-        getResult(data, lista -> Collections.min(lista));
-
-
-
-
-
-
-
-
+                    return max;
+                },
+                wynik -> System.out.println("Wynik pomnozony przez 2 to: " + 2*wynik));
     }
 
     public static void getResult(List<Integer> numbers,
-                                 MathOperation operation) {
+                                 Function<List<Integer>, Integer> operation,
+                                 Consumer<Integer> consumer) {
 
-        Integer result = operation.calculate(numbers);
-        System.out.println("Wynik: " + result);
+        Integer result = operation.apply(numbers); // wywolanie
+
+        consumer.accept(result);
     }
 }
