@@ -1,6 +1,7 @@
 import java.util.List;
 
-public class MaxOperation implements MathOperation {
+public class MaxOperation
+        implements MathOperation {
 
     @Override
     public Integer calculate(List<Integer> list) {
