@@ -2,10 +2,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-//        Task o = new MyTask();
-//        carryOutWork(o);
-
         Task o = new Task() {
             @Override
             public void doWork() {
@@ -14,10 +10,34 @@ public class Main {
             }
         };
 
-        carryOutWork(o);
+        carryOutWork(new Task() {
+            @Override
+            public void doWork() {
 
+            }
+        });
 
+        //wywolanie runJob 1. klAnonimowa 2. lambda
 
+        //po staremu:
+        runJob(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Old style!");
+            }
+        });
+
+//        po nowemu
+        runJob(() -> System.out.println("New lambda style!"));
+
+        runJob(() ->{
+            System.out.println("New lambda style2!");
+        });
+
+    }
+
+    public static void runJob(Runnable runnable) {
+        runnable.run();
     }
 
 
