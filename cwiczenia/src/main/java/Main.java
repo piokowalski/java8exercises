@@ -1,8 +1,18 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Test.");
 
+
+        Task o = new MyTask();
+        carryOutWork(o);
+
+
+
+    }
+
+
+    public static void carryOutWork(Task task) {
+        task.doWork();
 
     }
 
