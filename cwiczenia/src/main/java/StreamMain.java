@@ -17,6 +17,15 @@ public class StreamMain {
         sortByCalories(dishes).forEach(System.out::println);
 
         getNames(dishes).forEach(System.out::println);
+
+        System.out.println("Suma kalorii: " + getTotalCalories(dishes));
+    }
+
+    public static int getTotalCalories(List<Dish> dishes) {
+        return dishes.stream()
+                //.map(Dish::getCalories)
+                .map(d -> d.getCalories())
+                .reduce(0, (a, e) -> a+e);
     }
 
     public static List<String> getNames(List<Dish> dishes) {
