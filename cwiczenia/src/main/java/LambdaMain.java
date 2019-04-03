@@ -19,6 +19,8 @@ public class LambdaMain {
                 "Ewelina"
         ));
 
+
+
         for (String s : list) {
             System.out.print("["+s+"]");
         }
@@ -51,6 +53,11 @@ public class LambdaMain {
         list.forEach(param -> System.out.println(param.toUpperCase()));
 
         getLengths(list).forEach(i -> System.out.println(i));
+
+        //Referencja do metody:
+
+        list.forEach(System.out::println);
+
     }
 
 
