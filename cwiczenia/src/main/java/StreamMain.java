@@ -15,6 +15,15 @@ public class StreamMain {
         );
 
         sortByCalories(dishes).forEach(System.out::println);
+
+        getNames(dishes).forEach(System.out::println);
+    }
+
+    public static List<String> getNames(List<Dish> dishes) {
+        return dishes.stream()
+                .map(Dish::getName)
+                //.map(o -> o.getName())
+                .collect(Collectors.toList());
     }
 
     public static List<Dish> sortByCalories(List<Dish> dishes) {
