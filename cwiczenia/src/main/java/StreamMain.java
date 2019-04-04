@@ -21,11 +21,19 @@ public class StreamMain {
         System.out.println("Suma kalorii: " + getTotalCalories(dishes));
 
         System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::::");
-        //Exercise 12 - print only vegetarians dishes
+        //Exercise 13 - print only vegetarians dishes
         dishes.stream()
                 .filter( d -> d.isVegetarian()==true)
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
+        System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::::");
+        //Exercise 14 - print dishes with more than 500 calories
+        dishes.stream()
+                .filter( c -> c.getCalories() > 500)
+                .sorted((c1, c2) -> c1.getCalories() - c2.getCalories())
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+
     }
 
     public static int getTotalCalories(List<Dish> dishes) {
