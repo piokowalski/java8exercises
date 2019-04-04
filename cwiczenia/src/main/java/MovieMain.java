@@ -1,7 +1,6 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class MovieMain {
 
@@ -23,8 +22,52 @@ public class MovieMain {
                         categories(MovieCategory.COMEDY, MovieCategory.DRAMA, MovieCategory.FAMILY))
         );
 
-        System.out.println(movies);
+        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+
+        //Sorting - rating
+        movies.stream()
+                .sorted((m1, m2) -> (int) (m1.getRating() - m2.getRating()))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+        //No horrors on the list
+        movies.stream()
+                .filter( f-> !f.getCategories().contains(MovieCategory.HORROR))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+        //Remove movies with rating <7
+        movies.stream()
+                .filter(m -> m.getRating() >=7)
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+        //Sorting by length from longest to shortest
+        movies.stream()
+                .sorted((m1, m2) -> m2.getLength() - m1.getLength())
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+        // Sum of length of all movies
+        int totalLength = movies.stream()
+        .map(d ->d.getLength())
+                .reduce(0, (a,e) -> a+e);
+        System.out.println(totalLength);
+
+        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+        // Movies name sorting
+        movies.stream()
+                .map(f -> f.getTitle())
+                .sorted()
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+        // Generating set of all categories
+
+
+
     }
+
 
     public static Set<MovieCategory> categories(MovieCategory... c) {
         Set<MovieCategory> result = new HashSet<>();
