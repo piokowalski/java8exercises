@@ -1,28 +1,38 @@
+import java.util.Optional;
+
 // remove all nulls from the code
 public class UserService {
 
     // should return Optional object
-    public User findUser(String lastName) {
+    public Optional<User> findUser(String lastName) {
         if ("kowalski".equalsIgnoreCase(lastName)) {
-            return new User("Jan", "Kowalski", 32);
+            User u = new User("Jan", "Kowalski", 32);
+            return Optional.of(u);
         } else if ("nowak".equalsIgnoreCase(lastName)) {
-            return new User("Andrzej", "Nowak", 45);
+            return Optional.of(new User("Andrzej", "Nowak", 45));
         }
 
-        return null;
+        return Optional.empty();
+        //return Optional.ofNullable(null);
     }
 
     // avoid throwing NullPointerException when no user found
     public String getUserDetails(String lastName) {
-        User user = findUser(lastName);
-        return user.toString();
+        Optional<User> user = findUser(lastName);
+        if (user.isPresent()) {
+            return user.get().toString();
+        }
+
+        return "";
     }
 
     // should throw AccessDeniedException if no user found
     public void authorizeUser(String lastName) {
-        User user = findUser(lastName);
-        if (user == null) {
-            throw new AccessDeniedException("User not authorized");
-        }
+        Optional<User> user = findUser(lastName);
+//        if (user.isPresent() == false) { // pusty optional
+//            throw new AccessDeniedException("User not authorized");
+//        }
+
+        user.orElseThrow(() -> new AccessDeniedException("User not authorized"));
     }
 }
