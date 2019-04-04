@@ -31,7 +31,7 @@ public class UserService {
         Optional<User> user = findUser(lastName);
 //        if (user.isPresent() == false) { // pusty optional
 //            throw new AccessDeniedException("User not authorized");
-//        }
+//        }                            ANOTHER METHOD BELOW :
 
         user.orElseThrow(() -> new AccessDeniedException("User not authorized"));
     }
