@@ -1,5 +1,4 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 public class ChronoMain {
@@ -27,6 +26,27 @@ public class ChronoMain {
         LocalTime sevenFifteen = LocalTime.of(7,15,0 );
         System.out.println(sevenFifteen);
         System.out.println(sevenFifteen.getSecond());
+
+        // Date and Time
+
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
+
+        LocalDateTime someTime = LocalDateTime.of(2018,1,19,8,0,0);
+        System.out.println(someTime);
+
+        System.out.println(someTime.toLocalDate());
+        System.out.println(someTime.toLocalTime());
+        //other timezone
+
+        ZoneId zoneId = ZoneId.of("Pacific/Auckland");
+        ZonedDateTime zdt = someTime.atZone(zoneId);
+        System.out.println(zdt);
+
+
+        //Clock
+
+
 
 
     }
