@@ -22,14 +22,14 @@ public class MovieMain {
                         categories(MovieCategory.COMEDY, MovieCategory.DRAMA, MovieCategory.FAMILY))
         );
 
-        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+        System.out.println("-.-.-.-Sorting - rating.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
 
         //Sorting - rating
         movies.stream()
                 .sorted((m1, m2) -> (int) (m1.getRating() - m2.getRating()))
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
-        System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
+        System.out.println("-.-.-.No horrors on the list.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
         //No horrors on the list
         movies.stream()
                 .filter( f-> !f.getCategories().contains(MovieCategory.HORROR))
@@ -63,8 +63,12 @@ public class MovieMain {
                 .forEach(System.out::println);
         System.out.println("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-");
         // Generating set of all categories
-
-
+        //(using flatMap)
+        movies.stream()
+                .map(Movie::getCategories)
+                .flatMap(c -> c.stream())
+                .collect(Collectors.toSet())
+                .forEach(System.out::println);
 
     }
 
