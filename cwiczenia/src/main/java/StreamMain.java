@@ -19,6 +19,13 @@ public class StreamMain {
         getNames(dishes).forEach(System.out::println);
 
         System.out.println("Suma kalorii: " + getTotalCalories(dishes));
+
+        System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::::");
+        //Exercise 12 - print only vegetarians dishes
+        dishes.stream()
+                .filter( d -> d.isVegetarian()==true)
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
 
     public static int getTotalCalories(List<Dish> dishes) {
